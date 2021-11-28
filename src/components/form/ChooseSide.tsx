@@ -56,15 +56,21 @@ const Arrow = styled.div`
 `;
 
 export const ChooseSide = (props: IStepProps) => {
+
+    const chooseDarkSideHandler = () => {
+        props.chooseSide!();
+        props.nextStep();
+    };
+
     return (
         <Wrapper>
-            <StyledDiv>
+            <StyledDiv onClick={chooseDarkSideHandler}>
                 <img src={yoda} alt="Yoda"/>
                 <Arrow onClick={props.nextStep}/>
             </StyledDiv>
-            <StyledDiv>
+            <StyledDiv onClick={chooseDarkSideHandler}>
                 <img src={darthVader} alt="Darth Vader"/>
-                <Arrow onClick={props.nextStep}/>
+                <Arrow/>
             </StyledDiv>
         </Wrapper>
     )
