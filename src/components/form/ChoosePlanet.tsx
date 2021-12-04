@@ -23,17 +23,17 @@ export const ChoosePlanet = (props: IStepProps) => {
                 setPlanets(planetArr);
             }
         }
-
         fetchPlanets()
-    }, [])
+    }, []);
 
     return (
-            <Form onSubmit={props.nextStep}>
+            <Form onSubmit={()=>props.changeStep(4)}>
                 <Label>
                     Choose planet:
-                    <select name="planet">
+                    <select name="planet" defaultValue={'earth'} onChange={props.handleChange}>
                         {planets &&
                         <>
+                            <option value="Earth" key='earth'>Earth</option>
                             {planets.map(el => {
                                 return <option value={el.name} key={el.name}>{el.name}</option>
                             })}
@@ -41,7 +41,7 @@ export const ChoosePlanet = (props: IStepProps) => {
                         }
                     </select>
                 </Label>
-                <Button type='button' onClick={props.prevStep}>Back</Button>
+                <Button type='button' onClick={()=>props.changeStep(3)}>Back</Button>
                 <Button type='submit'>Next</Button>
             </Form>
     )

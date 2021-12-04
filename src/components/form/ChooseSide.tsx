@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {IStepProps} from "./Main";
+import {IStepProps, Side} from "./Main";
 
 const yoda = "https://ik.imagekit.io/kacper/mulkti-form/milton-wiklund-R5esYAv65t4-unsplash__1__1__1__LXRvTqF1o3.png?updatedAt=1638040780059"
 const darthVader = 'https://ik.imagekit.io/kacper/mulkti-form/tommy-van-kessel-_sDlQf6f7gc-unsplash_1__1__ojKoyuA8v.png?updatedAt=1638040773802'
@@ -23,6 +23,7 @@ const StyledDiv = styled.div`
 
   img {
     width: 80%;
+    max-width: 30rem;
   }
 `;
 
@@ -32,6 +33,7 @@ const Arrow = styled.div`
   border-top: 2em solid #000;
   -webkit-animation: moveArrow 0.6s infinite alternate ease-in-out;
   animation: moveArrow 0.6s infinite alternate ease-in-out;
+  cursor: pointer;
 
   @keyframes moveArrow {
     0% {
@@ -57,20 +59,20 @@ const Arrow = styled.div`
 
 export const ChooseSide = (props: IStepProps) => {
 
-    const chooseDarkSideHandler = () => {
-        props.chooseSide!();
-        props.nextStep();
+    const chooseDarkSideHandler = (val: Side) => {
+        props.chooseSide!(val);
+        props.changeStep!(2);
     };
 
     return (
         <Wrapper>
-            <StyledDiv onClick={chooseDarkSideHandler}>
+            <StyledDiv>
                 <img src={yoda} alt="Yoda"/>
-                <Arrow onClick={props.nextStep}/>
+                <Arrow onClick={() => chooseDarkSideHandler(Side.lightSide)}/>
             </StyledDiv>
-            <StyledDiv onClick={chooseDarkSideHandler}>
+            <StyledDiv>
                 <img src={darthVader} alt="Darth Vader"/>
-                <Arrow/>
+                <Arrow onClick={() => chooseDarkSideHandler(Side.darkSide)}/>
             </StyledDiv>
         </Wrapper>
     )

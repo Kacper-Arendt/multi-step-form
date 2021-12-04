@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   height: 100vh;
 `;
 
-const StyledForm = styled.form`
+export const FormStyles = css`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -22,6 +22,10 @@ const StyledForm = styled.form`
   border-radius: 3rem;
   background-color: rgba(119, 107, 107, .5);
   font-size: 1.3rem;
+`;
+
+const StyledForm = styled.form`
+${FormStyles};
 `;
 
 interface IForm {
